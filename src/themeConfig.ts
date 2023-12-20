@@ -1,5 +1,5 @@
-import { MantineThemeOverride, em } from "@mantine/core";
-import { COLORS } from 'shared/utils/colors';
+import { MantineThemeOverride, em } from '@mantine/core'
+import { COLORS } from 'shared/utils/colors'
 
 type ColorsShadeTuple = [
     string,
@@ -12,21 +12,21 @@ type ColorsShadeTuple = [
     string,
     string,
     string
-];
+]
 
 function getCustomColors(colors: { [key: string]: string }): {
-    [key: string]: ColorsShadeTuple;
+    [key: string]: ColorsShadeTuple
 } {
-    const finalColors: { [key: string]: ColorsShadeTuple } = {};
-    const colorsName = Object.keys(colors);
+    const finalColors: { [key: string]: ColorsShadeTuple } = {}
+    const colorsName = Object.keys(colors)
 
     for (let i = 0; i < colorsName.length; i++) {
         finalColors[`${colorsName[i]}`] = new Array(10).fill(
             colors[colorsName[i]]
-        ) as ColorsShadeTuple;
+        ) as ColorsShadeTuple
     }
 
-    return finalColors;
+    return finalColors
 }
 
 const themeConfig: MantineThemeOverride = {
@@ -39,7 +39,7 @@ const themeConfig: MantineThemeOverride = {
     colors: {
         ...getCustomColors(COLORS),
     },
-    // fontFamily: 'Outfit, sans-serif',
+    fontFamily: 'Josefin Sans, sans-serif',
 }
 
-export default themeConfig;
+export default themeConfig

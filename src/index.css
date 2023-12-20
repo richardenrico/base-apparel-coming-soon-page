@@ -1,6 +1,25 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Josefin Sans';
+  src: url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap');
+  font-weight: 300;
+  font-style: "normal";
+}
+@font-face {
+  font-family: 'Josefin Sans';
+  src: url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap');
+  font-weight: 400;
+  font-style: "normal";
+}
+@font-face {
+  font-family: 'Josefin Sans';
+  src: url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap');
+  font-weight: 600;
+  font-style: "normal";
+}
+
 /*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
 2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
