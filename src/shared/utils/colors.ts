@@ -12,7 +12,7 @@ export const COLORS: Record<Colors, string> = {
     'desaturated-red': '#ce9797',
     'soft-red': '#f96262',
     'dark-grayish-red': '#413a3a',
-    "white-red": '#fff5f5',
+    'white-red': '#fff5f5',
     peach: '#f8bfbf',
-    "peach-red": '#ee8c8c',
+    'peach-red': '#ee8c8c',
 }
