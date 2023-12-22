@@ -211,7 +211,7 @@ const Home = () => {
                         span={{ base: 12, md: 'auto', lg: 'auto' }}
                         order={{ base: 1, md: 2 }}
                     >
-                        <Group className="h-20" hiddenFrom="md">
+                        <Group bg={'white'} className="h-20" hiddenFrom="md">
                             <Image src={Logo} className="ml-6 h-6" />
                         </Group>
                         <Image src={HeroMobile} hiddenFrom="md" />
