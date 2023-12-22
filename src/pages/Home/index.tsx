@@ -15,6 +15,7 @@ import HeroDesktop from 'assets/images/hero-desktop.jpg'
 import BgPatternDesktop from 'assets/images/bg-pattern-desktop.svg'
 import Logo from 'assets/images/logo.svg'
 import IconArrow from 'assets/images/icon-arrow.svg'
+import IconError from 'assets/images/icon-error.svg'
 
 const Home = () => {
     const theme = useMantineTheme()
@@ -71,42 +72,60 @@ const Home = () => {
                                     email below to stay up-to-date with
                                     announcements and our launch deals.
                                 </Text>
-                                <Group mt={50} className='w-full relative'>
+                                <Group mt={50} className="w-full relative">
                                     <TextInput
-                                        className='w-[90%] absolute'
+                                        className="w-[90%] absolute"
                                         placeholder="Email Address"
                                         radius="xl"
                                         size="lg"
+                                        rightSection={
+                                            true && <Image src={IconError} />
+                                        }
+                                        error={true}
                                         styles={{
                                             wrapper: {
                                                 '--_input-placeholder-color':
                                                     '#debaba',
                                                 fontWeight: 300,
                                                 '--_input-bd': '#debaba',
-                                                '--_input-padding-left': '28px',
-                                                '--_input-padding-right': '55px',
+                                                '--_input-padding-left': '7%',
+                                                // 25% when error 15% when not
+                                                '--_input-padding-right': true
+                                                    ? '25%'
+                                                    : '15%',
                                                 '--_input-bd-focus': '#ce9797',
+                                                color: 'black',
                                             },
                                             input: {
                                                 backgroundColor: 'transparent',
                                                 fontSize: 16,
                                             },
+                                            section: {
+                                                marginRight: '12%',
+                                            },
                                         }}
                                     />
                                     <Button
-                                        className='absolute w-1/5 right-0'
+                                        className="absolute w-1/5 right-0 shadow-2xl"
                                         radius="xl"
                                         size="lg"
+                                        // mb={19}
                                         styles={{
                                             root: {
-                                                '--button-bg': 'linear-gradient(135deg, #f8bfbf 0%, #ee8c8c 100%)',
+                                                '--button-bg':
+                                                    'linear-gradient(135deg, #f8bfbf 0%, #ee8c8c 100%)',
                                                 '--button-hover': '#f9cfd0',
                                             },
                                         }}
                                     >
-                                        <Image src={IconArrow}/>
+                                        <Image src={IconArrow} />
                                     </Button>
                                 </Group>
+                                {true && (
+                                    <Text mt={'md'} fz={14} ml={'6%'} c={'red'}>
+                                        Please provide a valid email
+                                    </Text>
+                                )}
                             </Stack>
                         </Stack>
                     </Grid.Col>
