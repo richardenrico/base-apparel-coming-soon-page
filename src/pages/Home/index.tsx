@@ -19,8 +19,11 @@ import Logo from 'assets/images/logo.svg'
 import IconArrow from 'assets/images/icon-arrow.svg'
 import IconError from 'assets/images/icon-error.svg'
 import { useState } from 'react'
+import { useMediaQuery } from '@mantine/hooks'
 
 const Home = () => {
+    const isMobile = useMediaQuery(`(min-width: 375px`)
+
     const theme = useMantineTheme()
 
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
@@ -36,15 +39,16 @@ const Home = () => {
         validate: zodResolver(schema),
     })
 
-    console.log(form.values.email);
-    
-
     return (
         <>
             <Seo title={'Hello World'} />
             <Container h={'100vh'} mih={'100vh'} p={0} fluid>
                 <Grid className="h-full" gutter={0}>
-                    <Grid.Col className="h-full relative" span={7}>
+                    {/* span={7} */}
+                    <Grid.Col
+                        className="h-full relative"
+                        span={{ base: 12, md: 8, lg: 7 }}
+                    >
                         <Image
                             src={BgPatternDesktop}
                             h={'100vh'}
@@ -100,7 +104,7 @@ const Home = () => {
                                 >
                                     <Group mt={50} className="w-full relative">
                                         <TextInput
-                                            className="w-[90%] absolute"
+                                            className="w-[95%] absolute"
                                             placeholder="Email Address"
                                             radius="xl"
                                             size="lg"
@@ -123,9 +127,9 @@ const Home = () => {
                                                     '--_input-padding-left':
                                                         '7%',
                                                     '--_input-padding-right':
-                                                        !form.isValid('email')
+                                                        isSubmitted && !form.isValid('email')
                                                             ? '25%'
-                                                            : '15%',
+                                                            : '20%',
                                                     '--_input-bd-focus':
                                                         '#ce9797',
                                                     color: 'black',
@@ -136,7 +140,7 @@ const Home = () => {
                                                     fontSize: 16,
                                                 },
                                                 section: {
-                                                    marginRight: '12%',
+                                                    marginRight: '15%',
                                                 },
                                                 error: {
                                                     fontSize: 14,
@@ -181,7 +185,10 @@ const Home = () => {
                             </Stack>
                         </Stack>
                     </Grid.Col>
-                    <Grid.Col className="h-full" span={'auto'}>
+                    <Grid.Col
+                        className="h-full"
+                        span={{ base: 12, md: 'auto', lg: 'auto' }}
+                    >
                         <Image src={HeroDesktop} h={'100vh'} />
                     </Grid.Col>
                 </Grid>
