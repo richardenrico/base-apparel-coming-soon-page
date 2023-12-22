@@ -23,7 +23,7 @@ const Home = () => {
 
     return (
         <>
-            <Seo title={'Hello World'} />
+            <Seo title={'Base Apparel | HomePage'} />
             <Container h={'100vh'} mih={'100vh'} p={0} bg={'white-red'} fluid>
                 <Grid className="h-full" gutter={0}>
                     <Grid.Col
