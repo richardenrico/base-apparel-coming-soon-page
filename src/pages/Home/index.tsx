@@ -14,6 +14,7 @@ import { useForm, zodResolver } from '@mantine/form'
 import Seo from 'shared/components/Seo'
 import z from 'zod'
 import HeroDesktop from 'assets/images/hero-desktop.jpg'
+import HeroMobile from 'assets/images/hero-mobile.jpg'
 import BgPatternDesktop from 'assets/images/bg-pattern-desktop.svg'
 import Logo from 'assets/images/logo.svg'
 import IconArrow from 'assets/images/icon-arrow.svg'
@@ -22,7 +23,7 @@ import { useState } from 'react'
 import { useMediaQuery } from '@mantine/hooks'
 
 const Home = () => {
-    const isMobile = useMediaQuery(`(min-width: 375px`)
+    const isMobile = useMediaQuery(`(max-width: 48em`)
 
     const theme = useMantineTheme()
 
@@ -42,27 +43,36 @@ const Home = () => {
     return (
         <>
             <Seo title={'Hello World'} />
-            <Container h={'100vh'} mih={'100vh'} p={0} fluid>
+            <Container h={'100vh'} mih={'100vh'} p={0} bg={'white-red'} fluid>
                 <Grid className="h-full" gutter={0}>
-                    {/* span={7} */}
                     <Grid.Col
                         className="h-full relative"
-                        span={{ base: 12, md: 8, lg: 7 }}
+                        span={{ base: 12, md: 8.5, lg: 7 }}
+                        order={{ base: 2, md: 1 }}
                     >
                         <Image
                             src={BgPatternDesktop}
                             h={'100vh'}
                             className="absolute top-0 z-0"
+                            visibleFrom="md"
                         />
                         <Stack
-                            className="h-screen pl-36 pr-52 py-16"
-                            bg={getGradient(
-                                { deg: 135, from: 'white', to: 'white-red' },
-                                theme
-                            )}
+                            className="px-10 py-14 md:h-screen md:pl-36 md:pr-52 md:py-16"
+                            bg={
+                                isMobile
+                                    ? 'white-red'
+                                    : getGradient(
+                                          {
+                                              deg: 135,
+                                              from: 'white',
+                                              to: 'white-red',
+                                          },
+                                          theme
+                                      )
+                            }
                             justify="space-around"
                         >
-                            <Group className="z-30">
+                            <Group className="z-30" visibleFrom="md">
                                 <Image src={Logo} />
                             </Group>
                             <Stack justify="center" className="h-full z-30">
@@ -70,26 +80,32 @@ const Home = () => {
                                     <Text
                                         fw={300}
                                         c={'desaturated-red'}
-                                        className="tracking-[.3em] text-6xl"
+                                        ta={isMobile ? 'center' : 'left'}
+                                        className="tracking-[.3em] text-5xl lg:text-6xl"
                                     >
                                         WE'RE
                                     </Text>
                                     <Text
                                         fw={600}
                                         c={'dark-grayish-red'}
-                                        className="tracking-[.3em] text-6xl"
+                                        ta={isMobile ? 'center' : 'left'}
+                                        className="tracking-[.3em] text-5xl lg:text-6xl"
                                     >
                                         COMING
                                     </Text>
                                     <Text
                                         fw={600}
                                         c={'dark-grayish-red'}
-                                        className="tracking-[.3em] text-6xl"
+                                        ta={isMobile ? 'center' : 'left'}
+                                        className="tracking-[.3em] text-5xl lg:text-6xl"
                                     >
                                         SOON
                                     </Text>
                                 </Stack>
-                                <Text c={'desaturated-red'}>
+                                <Text
+                                    ta={isMobile ? 'center' : 'left'}
+                                    c={'desaturated-red'}
+                                >
                                     Hello fellow shoppers! We're currently
                                     building our new fashion store. Add your
                                     email below to stay up-to-date with
@@ -102,7 +118,10 @@ const Home = () => {
                                     }}
                                     onChange={() => setIsSubmitted(false)}
                                 >
-                                    <Group mt={50} className="w-full relative">
+                                    <Group
+                                        mt={isMobile ? 30 : 50}
+                                        className="w-full relative"
+                                    >
                                         <TextInput
                                             className="w-[95%] absolute"
                                             placeholder="Email Address"
@@ -127,8 +146,11 @@ const Home = () => {
                                                     '--_input-padding-left':
                                                         '7%',
                                                     '--_input-padding-right':
-                                                        isSubmitted && !form.isValid('email')
-                                                            ? '25%'
+                                                        isSubmitted &&
+                                                        !form.isValid('email')
+                                                            ? isMobile
+                                                                ? '35%'
+                                                                : '25%'
                                                             : '20%',
                                                     '--_input-bd-focus':
                                                         '#ce9797',
@@ -140,10 +162,9 @@ const Home = () => {
                                                     fontSize: 16,
                                                 },
                                                 section: {
-                                                    marginRight: '15%',
-                                                },
-                                                error: {
-                                                    fontSize: 14,
+                                                    marginRight: isMobile
+                                                        ? '18%'
+                                                        : '15%',
                                                 },
                                             }}
                                             {...form.getInputProps('email', {
@@ -151,7 +172,7 @@ const Home = () => {
                                             })}
                                         />
                                         <Button
-                                            className="absolute w-1/5 right-0 shadow-2xl"
+                                            className="absolute md:w-1/5 right-0 shadow-2xl"
                                             radius="xl"
                                             size="lg"
                                             type="submit"
@@ -188,8 +209,13 @@ const Home = () => {
                     <Grid.Col
                         className="h-full"
                         span={{ base: 12, md: 'auto', lg: 'auto' }}
+                        order={{ base: 1, md: 2 }}
                     >
-                        <Image src={HeroDesktop} h={'100vh'} />
+                        <Group className="h-20" hiddenFrom="md">
+                            <Image src={Logo} className="ml-6 h-6" />
+                        </Group>
+                        <Image src={HeroMobile} hiddenFrom="md" />
+                        <Image src={HeroDesktop} h={'100vh'} visibleFrom="md" />
                     </Grid.Col>
                 </Grid>
             </Container>
