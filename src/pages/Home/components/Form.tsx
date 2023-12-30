@@ -41,20 +41,19 @@ function Form({ isMobile }: { isMobile: boolean }) {
                         error={isSubmitted && !form.isValid('email')}
                         styles={{
                             wrapper: {
-                                '--_input-placeholder-color': '#debaba',
                                 fontWeight: 300,
-                                '--_input-bd': '#debaba',
-                                '--_input-padding-left': '7%',
-                                '--_input-padding-right':
+                            },
+                            input: {
+                                color: 'black',
+                                borderColor: '#debaba',
+                                // borderColor: '#ce9797',
+                                paddingLeft: '7%',
+                                paddingRight:
                                     isSubmitted && !form.isValid('email')
                                         ? isMobile
                                             ? '35%'
                                             : '25%'
                                         : '20%',
-                                '--_input-bd-focus': '#ce9797',
-                                color: 'black',
-                            },
-                            input: {
                                 backgroundColor: 'transparent',
                                 fontSize: 16,
                             },
@@ -72,12 +71,10 @@ function Form({ isMobile }: { isMobile: boolean }) {
                         size="lg"
                         type="submit"
                         // mb={16}
-                        styles={{
-                            root: {
-                                '--button-bg':
-                                    'linear-gradient(135deg, #f8bfbf 0%, #ee8c8c 100%)',
-                                '--button-hover': '#f9cfd0',
-                            },
+                        style={{
+                            '--button-bg':
+                                'linear-gradient(135deg, #f8bfbf 0%, #ee8c8c 100%)',
+                            '--button-hover': '#f9cfd0',
                         }}
                     >
                         <Image src={IconArrow} />
